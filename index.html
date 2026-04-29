@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Interactive Agentic AI learning app based on the Hugging Face Agents Course.">
+    <title>Agentic AI Arcade</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <canvas id="sky" aria-hidden="true"></canvas>
+    <header class="app-header">
+      <a class="brand" href="#top" aria-label="Agentic AI Arcade home">
+        <span class="brand-mark">AI</span>
+        <span>
+          <strong>Agentic AI Arcade</strong>
+          <small>from zero to final agent</small>
+        </span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#path">Path</a>
+        <a href="#lab">Lab</a>
+        <a href="#quiz">Quiz</a>
+        <a href="#boss">Boss Fight</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Built around the Hugging Face Agents Course</p>
+          <h1>Learn agentic AI like you are unlocking a playable tech tree.</h1>
+          <p>
+            Master the full loop: LLMs, messages, tools, reasoning cycles, frameworks,
+            RAG, observability, evaluation, safety, MCP-style tool contracts, and a final
+            benchmark-ready project.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#path">Start the quest</a>
+            <button class="button ghost" id="resetProgress" type="button">Reset progress</button>
+          </div>
+        </div>
+        <aside class="status-panel" aria-label="Learning status">
+          <div>
+            <span class="label">Rank</span>
+            <strong id="rankLabel">Rookie Reasoner</strong>
+          </div>
+          <div>
+            <span class="label">XP</span>
+            <strong><span id="xpValue">0</span> / <span id="xpGoal">900</span></strong>
+          </div>
+          <div class="meter" aria-label="Progress meter">
+            <span id="progressBar"></span>
+          </div>
+          <p id="coachLine">Pick your first mission. Momentum beats mystery.</p>
+        </aside>
+      </section>
+
+      <section class="section band">
+        <div class="section-head">
+          <p class="eyebrow">Mission Control</p>
+          <h2>Your course map</h2>
+          <p>
+            The official course gives the spine. This app adds the connective tissue:
+            memory, planning, evals, guardrails, production patterns, and short playful drills.
+          </p>
+        </div>
+        <div class="stats" aria-label="Progress statistics">
+          <div><strong id="doneCount">0</strong><span>missions done</span></div>
+          <div><strong id="quizCount">0</strong><span>quiz wins</span></div>
+          <div><strong id="streakCount">0</strong><span>day streak</span></div>
+        </div>
+      </section>
+
+      <section id="path" class="section">
+        <div class="section-head">
+          <p class="eyebrow">Curriculum</p>
+          <h2>Unlock the agent stack</h2>
+        </div>
+        <div class="mission-layout">
+          <div class="mission-list" id="missionList" aria-label="Agentic AI missions"></div>
+          <article class="lesson" id="lessonPanel" aria-live="polite"></article>
+        </div>
+      </section>
+
+      <section id="lab" class="section band">
+        <div class="section-head">
+          <p class="eyebrow">Interactive Lab</p>
+          <h2>Tool-calling simulator</h2>
+          <p>
+            Build a tiny agent run. Choose a mission, select tools, then step through the
+            thought-action-observation cycle.
+          </p>
+        </div>
+        <div class="lab-grid">
+          <form class="lab-controls" id="agentForm">
+            <label>
+              Mission
+              <select id="agentMission">
+                <option value="trip">Plan a study sprint</option>
+                <option value="rag">Answer from course notes</option>
+                <option value="debug">Debug a failing tool</option>
+              </select>
+            </label>
+            <fieldset>
+              <legend>Tools</legend>
+              <label><input type="checkbox" name="tool" value="search" checked> Search</label>
+              <label><input type="checkbox" name="tool" value="calculator"> Calculator</label>
+              <label><input type="checkbox" name="tool" value="notes" checked> Notes</label>
+              <label><input type="checkbox" name="tool" value="evaluator"> Evaluator</label>
+            </fieldset>
+            <button class="button primary" type="submit">Run agent</button>
+          </form>
+          <div class="terminal" id="agentTrace" aria-live="polite">
+            <p class="trace-line">Awaiting mission. The agent is idle, caffeinated, and suspiciously organized.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="quiz" class="section">
+        <div class="section-head">
+          <p class="eyebrow">Quiz Arena</p>
+          <h2>Beat the misconception boss</h2>
+        </div>
+        <div class="quiz-shell">
+          <div id="quizCard" class="quiz-card"></div>
+          <div class="flashcards">
+            <h3>Flashcards</h3>
+            <button class="flashcard" id="flashcard" type="button" aria-live="polite"></button>
+            <button class="button ghost" id="nextFlashcard" type="button">Next card</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="boss" class="section band">
+        <div class="section-head">
+          <p class="eyebrow">Final Project</p>
+          <h2>Boss fight checklist</h2>
+          <p>
+            Use this to turn learning into a deployable agent portfolio project. It is based on
+            the course final assignment idea and expanded with production checks.
+          </p>
+        </div>
+        <div class="boss-grid" id="bossGrid"></div>
+      </section>
+
+      <section class="section sources">
+        <div class="section-head">
+          <p class="eyebrow">Sources</p>
+          <h2>Course links</h2>
+        </div>
+        <ul>
+          <li><a href="https://huggingface.co/learn/agents-course/en/unit0/introduction" target="_blank" rel="noreferrer">Hugging Face Agents Course introduction</a></li>
+          <li><a href="https://github.com/huggingface/agents-course" target="_blank" rel="noreferrer">Hugging Face agents-course repository</a></li>
+          <li><a href="https://huggingface.co/agents-course" target="_blank" rel="noreferrer">Course organization page and syllabus</a></li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>Static, local-first, and ready for GitHub Pages. Your progress stays in this browser.</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
