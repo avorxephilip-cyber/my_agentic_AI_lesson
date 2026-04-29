@@ -1,6 +1,6 @@
-# Agentic AI Arcade
+# my_agentic_AI_lesson
 
-A static, interactive web app for learning agentic AI from scratch through a playful curriculum based on the Hugging Face Agents Course.
+An interactive web app for learning and improving agentic AI workflows from scratch through a playful curriculum based on the Hugging Face Agents Course.
 
 ## What is inside
 
@@ -11,12 +11,11 @@ A static, interactive web app for learning agentic AI from scratch through a pla
 
 ## Deploy on GitHub Pages
 
-1. Push these files to a GitHub repository.
-2. Open the repository on GitHub.
-3. Go to `Settings` -> `Pages`.
-4. Under `Build and deployment`, choose `Deploy from a branch`.
-5. Select the `main` branch and `/root`.
-6. Save. GitHub will publish the app after the Pages workflow finishes.
+1. Open the repository on GitHub.
+2. Go to `Settings` -> `Pages`.
+3. Under `Build and deployment`, choose `Deploy from a branch`.
+4. Select the `main` branch and `/root`.
+5. Save. GitHub will publish the app after the Pages workflow finishes.
 
 ## Sources
 
