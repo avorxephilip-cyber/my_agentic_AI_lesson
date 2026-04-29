@@ -118,6 +118,12 @@ main {
   overflow: hidden;
 }
 
+main,
+section,
+article {
+  min-width: 0;
+}
+
 .hero {
   display: grid;
   min-height: calc(100vh - 72px);
@@ -182,6 +188,7 @@ h3 {
 
 .button {
   display: inline-flex;
+  max-width: 100%;
   min-height: 44px;
   align-items: center;
   justify-content: center;
@@ -192,6 +199,7 @@ h3 {
   color: var(--text);
   cursor: pointer;
   font-weight: 800;
+  text-align: center;
   text-decoration: none;
   transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
 }
@@ -301,6 +309,7 @@ h3 {
   grid-template-columns: minmax(240px, 360px) minmax(0, 1fr);
   gap: 20px;
   align-items: start;
+  min-width: 0;
 }
 
 .mission-list {
@@ -336,9 +345,29 @@ h3 {
 }
 
 .lesson {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   min-height: 580px;
   padding: clamp(18px, 4vw, 32px);
   scroll-margin-top: 96px;
+}
+
+.lesson > *,
+.lesson-top > *,
+.lesson-actions,
+.lesson-status-actions {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.lesson h2,
+.lesson h3,
+.lesson p,
+.lesson li,
+.mission-card strong,
+.mission-card span {
+  overflow-wrap: anywhere;
 }
 
 .lesson-top {
@@ -372,9 +401,11 @@ h3 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
   margin: 24px 0;
+  min-width: 0;
 }
 
 .mini-panel {
+  min-width: 0;
   border-left: 3px solid var(--cyan);
   padding: 14px 14px 14px 16px;
   background: rgba(255, 255, 255, 0.05);
@@ -394,6 +425,9 @@ h3 {
 }
 
 .codebox {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   overflow-x: auto;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius);
@@ -584,6 +618,11 @@ footer {
   .lesson {
     min-height: auto;
   }
+
+  .lesson-actions {
+    align-items: stretch;
+    min-width: 0;
+  }
 }
 
 @media (max-width: 640px) {
@@ -647,6 +686,16 @@ footer {
     padding: 42px 16px;
   }
 
+  .mission-layout {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .mission-list {
+    margin-inline: -16px;
+    padding-inline: 16px;
+  }
+
   .status-panel,
   .lesson,
   .quiz-card,
@@ -672,12 +721,21 @@ footer {
   .lesson-top {
     display: grid;
     gap: 12px;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .lesson-status-actions {
     display: flex;
     flex-wrap: wrap;
     justify-items: start;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .lesson-status-actions .button,
+  .lesson-status-actions .pill {
+    width: 100%;
+    white-space: normal;
   }
 
   .lesson-actions .button,
@@ -690,6 +748,12 @@ footer {
     max-width: 100%;
     padding: 12px;
     font-size: 0.78rem;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .codebox code {
+    white-space: inherit;
   }
 
   .terminal {
